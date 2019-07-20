@@ -12,25 +12,25 @@ class Encounter {
     private Controller c;
     private Encounterable encounterable;
     private HashMap<String,String> hashData = new HashMap<>();
-    private int index;
+    private EncounterName name;
     private String openingStoryText;
     private String openingThemText;
     private String openingYouText;
 
-    Encounter(int index, Encounterable encounterable, Controller c, String storyText, String themText) {
-        this(index, encounterable, c);
+    Encounter(EncounterName name, Encounterable encounterable, Controller c, String storyText, String themText) {
+        this(name, encounterable, c);
         this.openingStoryText = storyText;
         this.openingThemText = themText;
     }
 
-    Encounter(int index, Encounterable encounterable, Controller c, String storyText) {
-        this(index, encounterable, c);
+    Encounter(EncounterName name, Encounterable encounterable, Controller c, String storyText) {
+        this(name, encounterable, c);
         this.openingStoryText = storyText;
     }
 
-    Encounter(int index, Encounterable encounterable, Controller c) {
+    Encounter(EncounterName name, Encounterable encounterable, Controller c) {
         this.c = c;
-        this.index = index;
+        this.name = name;
         this.encounterable = encounterable;
     }
 
@@ -57,8 +57,8 @@ class Encounter {
         this.options.add(o);
     }
 
-    int getIndex() {
-        return this.index;
+    EncounterName getName() {
+        return this.name;
     }
 
     void begin() {

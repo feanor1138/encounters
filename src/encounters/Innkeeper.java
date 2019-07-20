@@ -21,7 +21,7 @@ public class Innkeeper extends Person {
         //and pass back the selected response.
         //then the encounterable would have a logic structure that would handle the response.
 
-        Encounter e1 = new Encounter(1, this, c, intro,
+        Encounter e1 = new Encounter(EncounterName.INNKEEPER_START, this, c, intro,
                 "Hi, there. Come around here much?");
         e1.addOption("Yes, you fool. Don't you remember me?");
         e1.addOption("Never. What's good?");
@@ -29,7 +29,7 @@ public class Innkeeper extends Person {
     }
 
     private void startCharacterCreate(String openingText) {
-        Encounter characterCreate1 = new Encounter(4,this, c,
+        Encounter characterCreate1 = new Encounter(EncounterName.INNKEEPER_NAME,this, c,
                 "You continue your conversation with the Innkeeper, and find as you answer the questions " +
                         "he asks you about yourself, your understanding of yourself becomes clearer.",
                 openingText);
@@ -58,8 +58,8 @@ public class Innkeeper extends Person {
 
     public void handleResponse(Option option) {
         Encounter encounter = option.getMyEncounter();
-        switch (encounter.getIndex()) {
-            case 1:
+        switch (encounter.getName()) {
+            case INNKEEPER_START:
                 switch (option.getOptionNumber()) {
                     case 1:
                         //yes, don't you remember?
@@ -85,9 +85,9 @@ public class Innkeeper extends Person {
                     default:
                 }
                 break;
-            case 4:
+            case INNKEEPER_NAME:
                 c.lblYourName.setText(encounter.getData("txtYourName"));
-                Encounter characterCreate2 = new Encounter(5, this, c, "",
+                Encounter characterCreate2 = new Encounter(EncounterName.INNKEEPER_CLASS, this, c, "",
                         "Ah, good to meet you. I'm Frum, this here's my place." +
                                 " And what's your profession then?");
                 characterCreate2.addOption("Thief", "I'm a liberator, actually. I liberate rich fools from their money.");
@@ -98,7 +98,27 @@ public class Innkeeper extends Person {
                 setName("Frum the Innkeeper");
                 characterCreate2.begin();
                 break;
-            case 5:
+            case INNKEEPER_CLASS:
+                //class selection
+                switch (option.getOptionNumber()) {
+                    case 1:
+                        //thief
+                        //strength: stealth
+                        break;
+                    case 2:
+                        //bard
+                        //strength: charm
+                        break;
+                    case 3:
+                        //mercenary
+                        //strength: fight
+                        break;
+                    case 4:
+                        //wizard
+                        //strength: magic
+                        break;
+                    default:
+                }
                 break;
             default:
         }

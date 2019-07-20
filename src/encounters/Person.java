@@ -2,18 +2,12 @@ package encounters;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-
-import java.util.LinkedList;
 
 public class Person implements Encounterable {
 
     private String name;
     private Node node;
     Controller c;
-    private Label lblName;
     private Encounter firstEncounter;
 
     Person(Controller c, String name, Encounter firstEncounter){
